@@ -1,7 +1,7 @@
 # LAB_FEEC_UNICAMP
 Linear Array Beamformer - Faculdade de Engenharia Elétrica e Computação - UNICAMP
 
-Python package created for a undergraduate final project (Tabalho de . (Portuguese-BR)
+Python package created for a undergraduate final project (Trabalho de Conclusão de Curso). (Portuguese-BR)
 
 Includes:
 - Read ITA transfer functions (http://www.ita-toolbox.org).
