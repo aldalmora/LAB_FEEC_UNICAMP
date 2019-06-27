@@ -75,6 +75,7 @@ def applyMVDR(arr , src_to_smpl :bool , Rxx_inv):
     return MVDR_Spectrum
 
 #Invert the Rxx per frequency
+#If diagonalLoad = 0 then uses a adaptative diagonalLoading
 def invertRxx(Rxx, diagonalLoad):
     Rxx_inv = np.zeros((len(Rxx),len(Rxx),Rxx.shape[-1]), dtype=np.complex_)
 
@@ -152,12 +153,12 @@ def IterativeCovariance(arr, Sn, parts):
         tFor_pos = sigs_time[...,pos_forward-step:pos_forward+step]*np.hanning(2*step)
         fFor_pos = np.matrix([toFreq(t,lTime) for t in tFor_pos], dtype=np.complex_)
         RFor_pos = np.array([fFor_pos[...,j]*fFor_pos[...,j].H/(2*fFor_pos.shape[0]*(parts+1)) for j in range(0,fFor_pos.shape[1])], dtype=np.complex_)
-        rStep.append(RIda_pos.T)
+        rStep.append(RFor_pos.T)
 
         tBack_pos = sigs_time[...,pos_backward-step:pos_backward+step]*np.hanning(2*step)
         fBack_pos = np.matrix([toFreq(t,lTime) for t in tBack_pos], dtype=np.complex_)
         RBack_pos = np.array([fBack_pos[...,j]*fBack_pos[...,j].H/(2*fBack_pos.shape[0]*(parts+1)) for j in range(0,fBack_pos.shape[1])], dtype=np.complex_)
-        rStep.append(RVolta_pos.T)
+        rStep.append(RBack_pos.T)
     
     Rxx[...,:] = np.sum(rStep,axis=0)
     return Rxx

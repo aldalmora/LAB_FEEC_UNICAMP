@@ -10,6 +10,8 @@ def Plot_Mics_Time(arr):
     for i in range(0 ,len(arr.Microphones)):
         mic_Time = arr.Microphones[i].signal.time()
         plt.plot(np.linspace(0,len(mic_Time)/arr.fs,len(mic_Time)),mic_Time,color=colors[i],linewidth=0.25)
+    plt.xlabel('Tempo(s)')
+    plt.ylabel('Amplitude')
 
 #Given the Spectrum, plot the signal in time
 def plotTime(fs,spectrum,cor='',linewidth=0.25):

@@ -44,7 +44,7 @@ def Test(file_name, Original, arr, partsAC, diagonalLoading):
     #'Rxx_Sn_Inv_Refl' 		: Rxx_Sn_Inv_Refl,
     data = {
         'fs'                    : arr.fs,
-        'divisoesAC'            : divisoesAC,
+        'divisoesAC'            : partsAC,
         'diagonalLoading'       : diagonalLoading,
         'Original' 				: Original,
         'DAS_Inc' 				: DAS_Inc,
@@ -123,19 +123,6 @@ def Show_Data(file_name, xmin, xmax):
     plt.title('MVDR(Refletido)')
     plt.xlim(xmin,xmax)
     plotFreq(fs,MVDR_Refl,'b')
-
-    
-    #plt.figure()
-    #plt.title('Rxx Sn(STD)')
-    #plotFreq(fs,np.linalg.cond(Rxx_Sn_Inc,axis=(0,1)),'b')
-
-    #plt.figure()
-    #plt.title('Condition Number Sn (MVDR Refl)')
-    #plotFreq(fs,Conds_Rxx_Refl,'b')
-
-    #plt.figure()
-    #plt.title('Condition Number Inverse Sn (MVDR Refl)')
-    #plotFreq(fs,Conds_Rxx_Inv_Refl,'b')
         
     plt.figure(figsize=(9,5))
     plt.title('Coeficiente de Reflexão')
@@ -153,17 +140,5 @@ def Show_Data(file_name, xmin, xmax):
     plt.figure()
     plt.title('MVDR(Refletido)')
     plotTime(fs,MVDR_Refl,'b')
-
-    #plt.figure()
-    #plt.title('DAS')
-    #plotTime(fs,DAS_Spectrum,'g')
-
-    #IPython.display.Audio(tcc.toTime(MVDR_Spectrum),rate=fs)
-    #IPython.display.Audio(tcc.toTime(DAS_Spectrum),rate=fs)
-
-
-    #plt.figure()
-    #plt.title('Orig - MVDR')
-    #plotFreq(2*len(MVDR_Spectrum_O),Orig-MVDR_Spectrum_O,'b')
 
     plt.show()
